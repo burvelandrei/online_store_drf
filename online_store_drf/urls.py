@@ -5,19 +5,18 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from product.views import ProductViewSet
 from cart.views import CartViewSet
 from cart_product.views import CartProductViewSet
-from user.views import UserViewSet
+from user.views import UserRegisterView, UserLoginView, UserLogoutView
 
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r"products", ProductViewSet)
-router.register(r"carts", CartViewSet)
-router.register(r"cart-products", CartProductViewSet)
+router.register("api/product", ProductViewSet, 'product')
+router.register("api/cart", CartViewSet, 'cart')
+router.register("api/cart-products", CartProductViewSet, 'cart_product')
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("api/", include(router.urls)),
-]
+    path('admin/', admin.site.urls),
+    path('api/user/register/', UserRegisterView.as_view(), name='user_register'),
+    path('api/user/login/', UserLoginView.as_view(), name='user_login'),
+    path('api/user/logout/', UserLogoutView.as_view(), name='user_logout'),
+] + router.urls

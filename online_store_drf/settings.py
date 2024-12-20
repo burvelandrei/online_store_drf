@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework_simplejwt',
+    'rest_framework.authtoken',
     'cart',
     'cart_product',
     'product',
@@ -143,7 +143,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 REST_FRAMEWORK = {
+    'DATE_INPUT_FORMATS': 'iso-8601',
+    'DATE_FORMAT': 'iso-8601',
+    'DATETIME_FORMAT': 'iso-8601',
+    'COERCE_DECIMAL_TO_STRING': True,
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+        # 'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+        'rest_framework.throttling.ScopedRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '120/minute',
+        'user': '240/day',
+    }
 }
+
+AUTH_USER_MODEL = 'user.User'
