@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils import timezone
-from .models import CustomUser
+from django.contrib.auth.models import User
 
 
 class Cart(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='cart')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart')
     created_at = models.DateField(auto_now_add=True)
     expires_at = models.DateField()
 
