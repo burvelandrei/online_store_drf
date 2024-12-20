@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser, UserManager
+from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 
 
@@ -12,6 +13,7 @@ class User(AbstractUser):
         choices=Role.choices,
         default=Role.CLIENT,
     )
+    phone_number = PhoneNumberField(default=None)
 
     def save(self, *args, **kwargs):
         if self.is_staff:
