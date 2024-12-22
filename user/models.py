@@ -13,7 +13,7 @@ class User(AbstractUser):
         choices=Role.choices,
         default=Role.CLIENT,
     )
-    phone_number = PhoneNumberField(default=None)
+    phone_number = PhoneNumberField()
 
     def save(self, *args, **kwargs):
         if self.is_staff:

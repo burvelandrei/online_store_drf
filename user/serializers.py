@@ -37,6 +37,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         model = ClientUser
         fields = (
             'username',
+            'first_name',
+            'last_name',
             'password',
             'password1',
             'email',
