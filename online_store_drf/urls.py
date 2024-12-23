@@ -65,7 +65,7 @@ urlpatterns = [
     path(
         "api/cart/apply-promocode/",
         ApplyPromoCodeView.as_view(),
-        name="apply-promo-code",
+        name="apply-promocode",
     ),
     path(
         "api/newsletter/subscribe/",
