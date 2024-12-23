@@ -27,9 +27,21 @@ router.register("api/cart-products", CartProductViewSet, "cart_product")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/user/register/", UserRegisterView.as_view(), name="user_register"),
-    path("api/user/login/", UserLoginView.as_view(), name="user_login"),
-    path("api/user/logout/", UserLogoutView.as_view(), name="user_logout"),
+    path(
+        "api/user/register/",
+        UserRegisterView.as_view(),
+        name="user_register",
+    ),
+    path(
+        "api/user/login/",
+        UserLoginView.as_view(),
+        name="user_login",
+    ),
+    path(
+        "api/user/logout/",
+        UserLogoutView.as_view(),
+        name="user_logout",
+    ),
     path(
         "api/cart/add/<int:product_id>/",
         AddProductToCartView.as_view(),
@@ -40,7 +52,11 @@ urlpatterns = [
         DecreaseProductQuantityView.as_view(),
         name="decrease-product-quantity",
     ),
-    path("api/cart/delete/", DeleteCartView.as_view(), name="delete-cart"),
+    path(
+        "api/cart/delete/",
+        DeleteCartView.as_view(),
+        name="delete-cart",
+    ),
     path(
         "api/cart/remove/<int:product_id>/",
         RemoveProductFromCartView.as_view(),
