@@ -19,10 +19,6 @@ class Cart(models.Model):
             super().save(*args, **kwargs)
 
     @property
-    def is_active(self):
-        return self.expires_at > timezone.now()
-
-    @property
     def total_price(self):
         """Считает общую стоимость корзины."""
         return sum(item.total_price for item in self.cart_products.all())
