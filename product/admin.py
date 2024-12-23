@@ -11,5 +11,16 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ("name",)
     ordering = ("name",)
 
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'description', 'price', 'discount')
+        }),
+        ('Расширенные параметры', {
+            'classes': ('collapse',),
+            'fields': ('created_at', 'updated_at'),
+        }),
+    )
+    readonly_fields = ('created_at', 'updated_at')
+
 
 admin.site.register(Product, ProductAdmin)
