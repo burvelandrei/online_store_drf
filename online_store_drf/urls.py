@@ -16,6 +16,7 @@ from cart.views import (
     DecreaseProductQuantityView,
     DeleteCartView,
     RemoveProductFromCartView,
+    ApplyPromoCodeView,
 )
 
 
@@ -45,6 +46,11 @@ urlpatterns = [
         "api/cart/remove/<int:product_id>/",
         RemoveProductFromCartView.as_view(),
         name="remove-product-from-cart",
+    ),
+    path(
+        "api/cart/apply-promo-code/",
+        ApplyPromoCodeView.as_view(),
+        name="apply-promo-code",
     ),
     path(
         "api/newsletter/subscribe/",

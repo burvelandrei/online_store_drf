@@ -129,3 +129,19 @@ class DeleteCartView(APIView):
 
         except Cart.DoesNotExist:
             return Response({"error": "Cart not found"}, status=status.HTTP_404_NOT_FOUND)
+
+class ApplyPromoCodeView(APIView):
+    permission_classes = [IsClient]
+
+    def post(self, request):
+        user = request.user
+        promo_code = request.data.get('promo_code')
+
+        try:
+            cart = Cart.objects.get(user=user)
+            if cart.apply_promo_code(promo_code):
+                return Response({"message": "Promo code successfully applied"}, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": "Invalid or inactive promotional code"}, status=status.HTTP_400_BAD_REQUEST)
+        except Cart.DoesNotExist:
+            return Response({"error": "Cart not found"}, status=status.HTTP_404_NOT_FOUND)
