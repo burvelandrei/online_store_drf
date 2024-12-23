@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .models import PromoCode
 
 
 class PromoCodeAdmin(admin.ModelAdmin):
@@ -11,3 +12,5 @@ class PromoCodeAdmin(admin.ModelAdmin):
     )
     search_fields = ("code",)
     ordering = ("code",)
+
+admin.site.register(PromoCode, PromoCodeAdmin)
