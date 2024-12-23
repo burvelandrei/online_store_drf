@@ -24,20 +24,20 @@ class Cart(models.Model):
     def total_price(self):
         """Считает общую стоимость корзины."""
         total = sum(item.total_price for item in self.cart_products.all())
-        total_with_discounted_price = 0
-
-        for item in self.cart_products.all():
-            if item.product.is_on_discount:
-                total_with_discounted_price += item.product.discounted_price
-
-        total_without_discounted_price = total - total_with_discounted_price
+        total_with_discount_price = sum(
+            item.total_price
+            for item in self.cart_products.filter(product__discount__gt=0)
+        )
+        total_without_discount_price = sum(
+            item.total_price
+            for item in self.cart_products.exclude(product__discount__gt=0))
 
         # Применяем промокод
         if self.promo_code and self.promo_code.is_valid():
             if self.promo_code.is_cumulative:
                 total = self.promo_code.apply_discount(total)
             else:
-                total = self.promo_code.apply_discount(total_without_discounted_price) + total_with_discounted_price
+                total = self.promo_code.apply_discount(total_without_discount_price) + total_with_discount_price
         return total
 
     def apply_promo_code(self, promo_code):
