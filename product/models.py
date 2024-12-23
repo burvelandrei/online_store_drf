@@ -26,4 +26,4 @@ class Product(TimeStappedModel):
     @property
     def discounted_price(self):
         """Возвращает цену с учетом скидки."""
-        return self.price * (1 - self.discount / 100)
+        return float(self.price) * (1 - float(self.discount) / 100)

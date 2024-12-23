@@ -53,5 +53,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user = ClientUser.objects.create_user(
             username=validated_data['username'],
             password=password,
+            first_name = validated_data['first_name'],
+            last_name = validated_data['last_name'],
+            email = validated_data['email'],
+            phone_number = validated_data['phone_number']
         )
         return user

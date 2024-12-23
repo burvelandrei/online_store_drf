@@ -4,6 +4,7 @@ from .models import PromoCode
 
 class PromoCodeAdmin(admin.ModelAdmin):
     list_display = (
+        "id",
         "code",
         "discount_percentage",
         "is_cumulative",

@@ -3,7 +3,13 @@ from .models import Cart
 
 
 class CartAdmin(admin.ModelAdmin):
-    list_display = ("user__username", "created_at", "expires_at", "total_price")
+    list_display = (
+        "id",
+        "user__username",
+        "created_at",
+        "expires_at",
+        "total_price",
+    )
     search_fields = ("user__username",)
     readonly_fields = (
         "user",
