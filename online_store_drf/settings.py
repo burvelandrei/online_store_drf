@@ -171,7 +171,7 @@ AUTH_USER_MODEL = 'user.User'
 
 # Указываем брокер сообщений
 CELERY_BROKER_URL = 'redis://localhost:6379/'
-# Указываем бэкенд для результатов (необязательно)
+# Указываем бэкенд для результатов
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/'
 # Настройка времени
 CELERY_ACCEPT_CONTENT = ['json']

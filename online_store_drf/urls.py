@@ -26,18 +26,18 @@ urlpatterns = [
     path("api/user/login/", UserLoginView.as_view(), name="user_login"),
     path("api/user/logout/", UserLogoutView.as_view(), name="user_logout"),
     path(
-        "cart/add/<int:product_id>/",
+        "api/cart/add/<int:product_id>/",
         AddProductToCartView.as_view(),
         name="add-product-to-cart",
     ),
     path(
-        "cart/decrease/<int:product_id>/",
+        "api/cart/decrease/<int:product_id>/",
         DecreaseProductQuantityView.as_view(),
         name="decrease-product-quantity",
     ),
-    path("cart/delete/", DeleteCartView.as_view(), name="delete-cart"),
+    path("api/cart/delete/", DeleteCartView.as_view(), name="delete-cart"),
     path(
-        "cart/remove/<int:product_id>/",
+        "api/cart/remove/<int:product_id>/",
         RemoveProductFromCartView.as_view(),
         name="remove-product-from-cart",
     ),
