@@ -3,6 +3,7 @@ from django.utils import timezone
 from user.models import ClientUser
 from django.apps import apps
 from promocode.models import PromoCode
+from .tasks import clear_cart
 
 class Cart(models.Model):
     user = models.OneToOneField(ClientUser, on_delete=models.CASCADE, related_name='cart')
@@ -15,8 +16,7 @@ class Cart(models.Model):
         if not self.id:
             super().save(*args, **kwargs)
             # Планируем задачу на момент expires_at
-            clear_cart_task = apps.get_model('cart', 'clear_cart')
-            clear_cart_task.apply_async(args=[self.id], eta=self.expires_at)
+            clear_cart.apply_async(args=[self.id], eta=self.expires_at)
         else:
             super().save(*args, **kwargs)
 
@@ -30,7 +30,7 @@ class Cart(models.Model):
             if item.product.is_on_discount:
                 total_with_discounted_price += item.product.discounted_price
 
-        total_without_discounted_price = total - total_without_discounted_price
+        total_without_discounted_price = total - total_with_discounted_price
 
         # Применяем промокод
         if self.promo_code and self.promo_code.is_valid():

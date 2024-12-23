@@ -48,7 +48,7 @@ urlpatterns = [
         name="remove-product-from-cart",
     ),
     path(
-        "api/cart/apply-promo-code/",
+        "api/cart/apply-promocode/",
         ApplyPromoCodeView.as_view(),
         name="apply-promo-code",
     ),
