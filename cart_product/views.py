@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
+from online_store_drf.permissions import IsClient
 from .models import CartProduct
 from .serializers import CartProductSerializer
 
@@ -7,4 +7,4 @@ from .serializers import CartProductSerializer
 class CartProductViewSet(viewsets.ModelViewSet):
     queryset = CartProduct.objects.all()
     serializer_class = CartProductSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsClient]

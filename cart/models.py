@@ -5,8 +5,12 @@ from user.models import ClientUser
 
 class Cart(models.Model):
     user = models.OneToOneField(ClientUser, on_delete=models.CASCADE, related_name='cart')
-    created_at = models.DateField(auto_now_add=True)
-    expires_at = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+
+    def save(self, *args, **kwargs):
+        self.expires_at = timezone.now() + timezone.timedelta(hours=1)
+        super().save(*args, **kwargs)
 
     @property
     def is_active(self):
