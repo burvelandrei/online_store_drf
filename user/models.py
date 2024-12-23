@@ -14,6 +14,7 @@ class User(AbstractUser):
         default=Role.CLIENT,
     )
     phone_number = PhoneNumberField()
+    is_subscribed = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.is_staff:

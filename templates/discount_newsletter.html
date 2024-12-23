@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Актуальные скидки</title>
+</head>
+<body>
+    <h1>Здравствуйте, {{ user.username }}!</h1>
+    <p>Вот актуальные скидки на нашем сайте:</p>
+    <ul>
+        {% for product in discounted_products %}
+            <li>
+                {{ product.name }} - Старая цена: {{ product.price }} руб.,
+                Скидка: {{ product.discount }}%,
+                Новая цена: {{ product.discounted_price }} руб.
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Спасибо за подписку!</p>
+</body>
+</html>

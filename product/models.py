@@ -11,6 +11,11 @@ class Product(models.Model):
         return self.name
 
     @property
+    def is_on_discount(self):
+        """Проверяет, находится ли продукт на скидке."""
+        return self.discount > 0
+
+    @property
     def discounted_price(self):
         """Возвращает цену с учетом скидки."""
         return self.price * (1 - self.discount / 100)

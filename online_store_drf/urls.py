@@ -5,7 +5,12 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from product.views import ProductViewSet
 from cart.views import CartViewSet
 from cart_product.views import CartProductViewSet
-from user.views import UserRegisterView, UserLoginView, UserLogoutView
+from user.views import (
+    UserRegisterView,
+    UserLoginView,
+    UserLogoutView,
+    NewsletterSubscriptionView,
+)
 from cart.views import (
     AddProductToCartView,
     DecreaseProductQuantityView,
@@ -40,5 +45,10 @@ urlpatterns = [
         "api/cart/remove/<int:product_id>/",
         RemoveProductFromCartView.as_view(),
         name="remove-product-from-cart",
+    ),
+    path(
+        "api/newsletter/subscribe/",
+        NewsletterSubscriptionView.as_view(),
+        name="newsletter-subscribe",
     ),
 ] + router.urls
