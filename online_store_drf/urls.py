@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from product.views import ProductViewSet
+from product.views import ProductViewSet, SetProductDiscountView
 from cart.views import CartViewSet
 from cart_product.views import CartProductViewSet
 from user.views import (
@@ -56,5 +55,10 @@ urlpatterns = [
         "api/newsletter/subscribe/",
         NewsletterSubscriptionView.as_view(),
         name="newsletter-subscribe",
+    ),
+    path(
+        "api/product/<int:pk>/set-discount/",
+        SetProductDiscountView.as_view(),
+        name="set-product-discount",
     ),
 ] + router.urls
