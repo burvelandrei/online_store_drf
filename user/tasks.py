@@ -29,8 +29,8 @@ def send_discount_newsletter():
         )
         send_mail(
             subject,
-            message,
-            from_email=settings.EMAIL_HOST_USER,
+            from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[subscriber.email],
             html_message=message,
+            fail_silently=False,
         )

@@ -171,9 +171,9 @@ AUTH_USER_MODEL = 'user.User'
 
 
 # Указываем брокер сообщений
-CELERY_BROKER_URL = 'redis://localhost:6379/'
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
 # Указываем бэкенд для результатов
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 # Настройка времени
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -185,3 +185,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
